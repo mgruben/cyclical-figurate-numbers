@@ -1,5 +1,5 @@
 # cyclical-figurate-numbers 
-Finds the sum of cyclic, polygonal numbers.
+Finds the sum of cyclic, polygonal ("figurate") numbers.
 
 ### Definitions
 #### Cyclic Sets
