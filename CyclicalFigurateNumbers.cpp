@@ -60,6 +60,21 @@ bool isPolygonalThree(vector<int> v) {
     return (a[0] == 1 && a[1] == 1 && a[2] == 1);
 }
 
+bool isPolygonalSix(vector<int> v) {
+    int a[6] = {};
+    for (int num: v) {
+        if (isTri(num)) a[0]++;
+        else if (isSquare(num)) a[1]++;
+        else if (isPent(num)) a[2]++;
+        else if (isHex(num)) a[3]++;
+        else if (isHept(num)) a[4]++;
+        else if (isOct(num)) a[5]++;
+    }
+    
+    return (a[0] == 1 && a[1] == 1 && a[2] == 1
+         && a[3] == 1 && a[4] == 1 && a[5] == 1);
+}
+
 void testTri() {
     for (int i: {1,2,3,5,6,9,10,11,15}) {
         cout << i << ": " << isTri(i) << endl;
