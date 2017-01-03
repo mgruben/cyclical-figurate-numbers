@@ -10,48 +10,48 @@ using namespace std;
  * Note that all Hexagonal numbers must be triangular.
  */
 long long hexagon(int n) {
-    return (long long)n * ((long long)n*2 - 1);
+    return (int)n * ((int)n*2 - 1);
 }
 
 // Is the given number Square?
-bool isTri(long long num) {
+bool isTri(int num) {
     double n_est = (-1 + sqrt(1+8*num)) / 2;
     return fmod(n_est, 1) == 0;
 }
 
 // Is the given number Square?
-bool isSquare(long long num) {
+bool isSquare(int num) {
     double n_est = sqrt(num);
     return fmod(n_est, 1) == 0;
 }
 
 // Is the given number Pentagonal?
-bool isPent(long long num) {
+bool isPent(int num) {
     double n_est = (1 + sqrt(1+24*num)) / 6;
     return fmod(n_est, 1) == 0;
 }
 
 // Is the given number Hexagonal?
-bool isHex(long long num) {
+bool isHex(int num) {
     double n_est = (1 + sqrt(1+8*num)) / 4;
     return fmod(n_est, 1) == 0;
 }
 
 // Is the given number Heptagonal?
-bool isHept(long long num) {
+bool isHept(int num) {
     double n_est = (3 + sqrt(9+40*num)) / 10;
     return fmod(n_est, 1) == 0;
 }
 
 // Is the given number Octagonal?
-bool isOct(long long num) {
+bool isOct(int num) {
     double n_est = (2 + sqrt(4+12*num)) / 6;
     return fmod(n_est, 1) == 0;
 }
 
-bool isPolygonalThree(vector<long long> v) {
+bool isPolygonalThree(vector<int> v) {
     int a[3] = {};
-    for (long long num: v) {
+    for (int num: v) {
         if (isTri(num)) a[0]++;
         else if (isSquare(num)) a[1]++;
         else if (isPent(num)) a[2]++;
@@ -97,7 +97,7 @@ void testOct() {
 }
 
 int main() {
-    vector<long long> v = {8128, 2882, 8281};
+    vector<int> v = {8128, 2882, 8281};
     cout << isPolygonalThree(v) << endl;
     return 0;
 }
