@@ -4,15 +4,6 @@
 
 using namespace std;
 
-/**
- * Returns the nth Hexagonal number.
- * 
- * Note that all Hexagonal numbers must be triangular.
- */
-long long hexagon(int n) {
-    return (int)n * ((int)n*2 - 1);
-}
-
 // Is the given number Square?
 bool isTri(int num) {
     double n_est = (-1 + sqrt(1+8*num)) / 2;
@@ -49,6 +40,12 @@ bool isOct(int num) {
     return fmod(n_est, 1) == 0;
 }
 
+// Is the given number any kind of Polygonal?
+bool isPoly(int num) {
+    return (isTri(num) || isSquare(num) || isPent(num) ||
+           isHex(num) || isHept(num) || isOct(num));
+}
+
 bool isPolygonalThree(vector<int> v) {
     int a[3] = {};
     for (int num: v) {
@@ -73,11 +70,6 @@ bool isPolygonalSix(vector<int> v) {
     
     return (a[0] == 1 && a[1] == 1 && a[2] == 1
          && a[3] == 1 && a[4] == 1 && a[5] == 1);
-}
-
-bool isPoly(int num) {
-    return (isTri(num) || isSquare(num) || isPent(num) ||
-           isHex(num) || isHept(num) || isOct(num));
 }
 
 void genCyclicThree() {
