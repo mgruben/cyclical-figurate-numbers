@@ -1,10 +1,9 @@
 #include <iostream>
 #include <math.h>
-#include <vector>
 
 using namespace std;
 
-// Is the given number Square?
+// Is the given number Triangular?
 bool isTri(int num) {
     double n_est = (-1 + sqrt(1+8*num)) / 2;
     return fmod(n_est, 1) == 0;
@@ -53,12 +52,13 @@ bool isPoly(int num) {
  * This check is mutually exclusive, so an integer which is triangular
  * cannot count as a square integer, and vice versa.
  */
-bool isPolygonalThree(vector<int> v) {
+bool isPolygonalThree(int nums[]) {
+    // use char rather than int, since a[i] < 3 for all i
     char a[3] = {};
-    for (int num: v) {
-        if (isPent(num)) a[2]++;
-        else if (isSquare(num)) a[1]++;
-        else if (isTri(num)) a[0]++;
+    for (int i = 0; i < 3; i++) {
+        if (isPent(nums[i])) a[2]++;
+        else if (isSquare(nums[i])) a[1]++;
+        else if (isTri(nums[i])) a[0]++;
     }
     
     return (a[0] && a[1] && a[2]);
@@ -72,15 +72,16 @@ bool isPolygonalThree(vector<int> v) {
  * cannot count as a triangular integer, and vice versa.
  */
 
-bool isPolygonalSix(vector<int> v) {
+bool isPolygonalSix(int nums[]) {
+    // use char rather than int, since a[i] < 6 for all i
     char a[6] = {};
-    for (int num: v) {
-        if (isOct(num)) a[5]++;
-        else if (isHept(num)) a[4]++;
-        else if (isHex(num)) a[3]++;
-        else if (isPent(num)) a[2]++;
-        else if (isSquare(num)) a[1]++;
-        else if (isTri(num)) a[0]++;
+    for (int i = 0; i < 6; i++) {
+        if (isOct(nums[i])) a[5]++;
+        else if (isHept(nums[i])) a[4]++;
+        else if (isHex(nums[i])) a[3]++;
+        else if (isPent(nums[i])) a[2]++;
+        else if (isSquare(nums[i])) a[1]++;
+        else if (isTri(nums[i])) a[0]++;
     }
     
     return (a[0] && a[1] && a[2] && a[3] && a[4] && a[5]);
@@ -88,30 +89,31 @@ bool isPolygonalSix(vector<int> v) {
 
 void solveThree() {
     
-    // Use iterable data structure
-    vector<int> v;
+    // Store our nums in an array
+    int nums[3] = {};
     
+    // Iterate over all cyclic sets
     for (int a = 10; a < 100; a++) {
         for (int b = 10; b < 100; b++) {
             // Check if this number is polygonal
-            if (!isPoly(100*a + b)) continue;
+            int first = 100*a + b
+            if (!isPoly(first)) continue;
             for (int c = 10; c < 100; c++) {                
                 // Check if this number is polygonal
                 if (!isPoly(100*b + c)) continue;
                 // Check if this number is polygonal
                 if (!isPoly(100*c + a)) continue;
                 
-                // Store numbers in iterable data structure
-                v.clear();
-                v.push_back(100*a + b);
-                v.push_back(100*b + c);
-                v.push_back(100*c + a);
+                // Store numbers
+                nums[0] = 100*a + b;
+                nums[1] = 100*b + c;
+                nums[2] = 100*c + a;
                 
                 // Check for mutually exclusive polygonality
-                if (isPolygonalThree(v)) {
+                if (isPolygonalThree(nums)) {
                     int sum = 0;
-                    for (int i: v) sum += i;
-                    cout << v[0] << "+" << v[1] << "+" << v[2]
+                    for (int i = 0; i < 3; i++) sum += nums[i];
+                    cout << nums[0] << "+" << nums[1] << "+" << nums[2]
                     << " = " << sum << endl;
                     
                     /**
@@ -132,9 +134,10 @@ void solveThree() {
 
 void solveSix() {
     
-    // Use iterable data structure
-    vector<int> v;
+    // Store our nums in an array
+    int nums[6] = {};
     
+    // Iterate over all cyclic sets
     for (int a = 10; a < 100; a++) {
         for (int b = 10; b < 100; b++) {
             // Check if this number is polygonal
@@ -154,22 +157,24 @@ void solveSix() {
                             // Check if this number is polygonal
                             if (!isPoly(100*f + a)) continue;
                             
-                            // Store numbers in iterable data structure
-                            v.clear();
-                            v.push_back(100*a + b);
-                            v.push_back(100*b + c);
-                            v.push_back(100*c + d);
-                            v.push_back(100*d + e);
-                            v.push_back(100*e + f);
-                            v.push_back(100*f + a);
+                            // Store numbers
+                            nums[0] = 100*a + b;
+                            nums[1] = 100*b + c;
+                            nums[2] = 100*c + d;
+                            nums[3] = 100*d + e;
+                            nums[4] = 100*e + f;
+                            nums[5] = 100*f + a;
                             
                             // Check for mutually exclusive polygonality
-                            if (isPolygonalSix(v)) {
+                            if (isPolygonalSix(nums)) {
                                 int sum = 0;
-                                for (int i: v) sum += i;
-                                cout << v[0] << "+" << v[1] << "+" <<
-                                v[2] << "+" << v[3] << "+" << v[4] <<
-                                "+" << v[5] << " = " << sum << endl;
+                                for (int i = 0; i < 6; i++){
+                                    sum += nums[i];
+                                }
+                                cout << nums[0] << "+" << nums[1] << "+"
+                                << nums[2] << "+" << nums[3] << "+" <<
+                                nums[4] << "+" << nums[5] << " = " <<
+                                sum << endl;
                                 
                                 /**
                                  * We are guaranteed that there is
