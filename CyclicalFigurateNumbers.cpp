@@ -75,42 +75,6 @@ bool isPolygonalSix(vector<int> v) {
          && a[3] == 1 && a[4] == 1 && a[5] == 1);
 }
 
-void testTri() {
-    for (int i: {1,2,3,5,6,9,10,11,15}) {
-        cout << i << ": " << isTri(i) << endl;
-    }
-}
-
-void testSquare() {
-    for (int i: {1,3,4,8,9,15,16,24,25}) {
-        cout << i << ": " << isSquare(i) << endl;
-    }
-}
-
-void testPent() {
-    for (int i: {1,4,5,11,12,21,22,34,35}) {
-        cout << i << ": " << isPent(i) << endl;
-    }
-}
-
-void testHex() {
-    for (int i: {1,5,6,14,15,27,28,44,45}) {
-        cout << i << ": " << isHex(i) << endl;
-    }
-}
-
-void testHept() {
-    for (int i: {1,6,7,17,18,33,34,54,55}) {
-        cout << i << ": " << isHept(i) << endl;
-    }
-}
-
-void testOct() {
-    for (int i: {1,7,8,20,21,39,40,64,65}) {
-        cout << i << ": " << isOct(i) << endl;
-    }
-}
-
 bool isPoly(int num) {
     return (isTri(num) || isSquare(num) || isPent(num) ||
            isHex(num) || isHept(num) || isOct(num));
