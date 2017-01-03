@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+#include <vector>
 
 using namespace std;
 
@@ -48,6 +49,17 @@ bool isOct(long long num) {
     return fmod(n_est, 1) == 0;
 }
 
+bool isPolygonalThree(vector<long long> v) {
+    int a[3] = {};
+    for (long long num: v) {
+        if (isTri(num)) a[0]++;
+        else if (isSquare(num)) a[1]++;
+        else if (isPent(num)) a[2]++;
+    }
+    
+    return (a[0] == 1 && a[1] == 1 && a[2] == 1);
+}
+
 void testTri() {
     for (int i: {1,2,3,5,6,9,10,11,15}) {
         cout << i << ": " << isTri(i) << endl;
@@ -85,11 +97,7 @@ void testOct() {
 }
 
 int main() {
-    testTri();
-    testSquare();
-    testPent();
-    testHex();
-    testHept();
-    testOct();
+    vector<long long> v = {8128, 2882, 8281};
+    cout << isPolygonalThree(v) << endl;
     return 0;
 }
