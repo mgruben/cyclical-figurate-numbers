@@ -46,7 +46,7 @@ bool isPoly(int num) {
 }
 
 /**
- * Do the integers in the given vector v each represent a different
+ * Do the integers in the given array nums each represent a different
  * polygonal type?
  * 
  * This check is mutually exclusive, so an integer which is triangular
@@ -65,7 +65,7 @@ bool isPolygonalThree(int nums[]) {
 }
 
 /**
- * Do the integers in the given vector v each represent a different
+ * Do the integers in the given array nums each represent a different
  * polygonal type?
  * 
  * This check is mutually exclusive, so an integer which is hexagonal
