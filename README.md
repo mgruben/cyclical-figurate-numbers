@@ -42,6 +42,8 @@ So, the first ten octagonal numbers are `1, 8, 21, 40, 65, 96, 133, 176, 225, 28
 ### Problem Statement
 Find the sum of the only set of six cyclic 4-digit numbers, where each number in the set is a different polygonal type from above.
 
+That is, where one of the numbers of the cyclic set is triangular, another is square, another is pentagonal, another is hexagonal, another is heptagonal, and the last is octagonal, in any order.
+
 ### Motivation
 This project was completed for [Project Euler - Problem 61](https://projecteuler.net/problem=61).
 
